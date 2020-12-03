@@ -1,0 +1,28 @@
+extends layout/login-latout
+
+block content
+    .loginContainer
+        h1 Register
+        form#registerForm(method="post", onsubmit="event.preventDefault(); validateForm();")
+            input(type="text", name="firstName", placeholder="first name", required="")
+            input(type="text", name="lastName", placeholder="last name", required="")
+            input(type="text", name="username", placeholder="username", required="")
+            input(type="email", name="email", placeholder="email", required="")
+            input#password(type="password", name="password", placeholder="password", required="")
+            input#passwordComf(type="password", name="passwordConf", placeholder="confirm password", required="")
+            input(type="submit", value="create")
+
+        a(href="/login") Already have an account? Login here
+
+    script.
+        let passwordField = document.getElementById("password");
+        let passwordConfirmedField = document.getElementById("passwordComf");
+        let form = document.getElementById("registerForm");
+
+        function validateForm() {
+            if (passwordField.value !== passwordConfirmedField.value) {
+                alert("Password do not match, please try again");
+            } else {
+                form.submit();
+            }
+        }
